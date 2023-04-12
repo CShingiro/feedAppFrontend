@@ -73,7 +73,7 @@ export const loginApi = async (username, password) => {
         if(apiResponse == 200) {
             const payLoad = {
                 userData: apiResponse.data,
-                token: apiResponse.headers.Authorization,
+                token: apiResponse.headers.authorization,
             };
             response = frameResponse(1, payLoad);
         }
