@@ -53,7 +53,7 @@ export const verifyEmailApi = async (token) => {
         const apiResponse = await axios.get(url, {
             headers: { Authorization: frameToken(token) }
         });
-        if (apiResponse.status == 200) {
+        if (apiResponse.status === 200) {
             response = frameResponse(1, apiResponse.data);
         }
     } catch (err) {
@@ -69,8 +69,9 @@ export const verifyEmailApi = async (token) => {
 export const loginApi = async (username, password) => {
     let response = frameResponse();
     try {
+        const url = `${API_BASE_URL}/user/login`;
         const apiResponse = await axios.post(url, { username, password });
-        if(apiResponse == 200) {
+        if (apiResponse.status === 200) {
             const payLoad = {
                 userData: apiResponse.data,
                 token: apiResponse.headers.authorization,
@@ -78,10 +79,11 @@ export const loginApi = async (username, password) => {
             response = frameResponse(1, payLoad);
         }
     } catch (err) {
-        if(err.response) {
+        if (err.response) {
             response = frameResponse(0, err.response.data.message);
         }
+        console.log(err);
     } finally {
         return response;
     }
-}
+};

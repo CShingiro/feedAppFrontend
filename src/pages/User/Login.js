@@ -6,6 +6,7 @@ import Field from "../../components/Field";
 import Button from "../../components/Button";
 import Badge from "../../components/Badge";
 import LogoImage from "../../assets/images/logo.png";
+
 import { loginApi } from "../../util/ApiUtil";
 import { AppContext } from "../../context/applicationContext";
 
@@ -34,11 +35,11 @@ const Login = () => {
             }
             setIsFetching(false);
         }
-    }
+    };
     const LoginSchema = Yup.object().shape({
         username: Yup.string().required("Required"),
         password: Yup.string().required("Required"),
-    })
+    });
     return (
         <div className="bg-white">
             <div className="flex justify-center h-screen">
