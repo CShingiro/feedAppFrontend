@@ -35,7 +35,7 @@ const Register = () => {
                     "Registration successful. Please verify your email to continue."
                 );
             } else {
-                formikRef.current.setFieldValue("formMessage", apiResponse.payload);
+                formikRef.current.setFieldValue("formMessage", apiResponse.payLoad);
             }
             setIsFetching(false);
         }

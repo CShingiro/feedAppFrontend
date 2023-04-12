@@ -10,7 +10,7 @@ const frameResponse = (
 ) => {
     return {
         status: reqStatus,
-        payload: reqPayload,
+        payLoad: reqPayload,
     };
 };
 
