@@ -71,9 +71,17 @@ export const loginApi = async (username, password) => {
     try {
         const apiResponse = await axios.post(url, { username, password });
         if(apiResponse == 200) {
-
+            const payLoad = {
+                userData: apiResponse.data,
+                token: apiResponse.headers.Authorization,
+            };
+            response = frameResponse(1, payLoad);
         }
     } catch (err) {
-
+        if(err.response) {
+            response = frameResponse(0, err.response.data.message);
+        }
+    } finally {
+        return response;
     }
 }
