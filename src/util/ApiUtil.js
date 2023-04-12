@@ -58,10 +58,22 @@ export const verifyEmailApi = async (token) => {
         }
     } catch (err) {
         if (err.response) {
-            response = frameResponse(0, apiResponse.data.message);
+            response = frameResponse(0, err.response.data.message);
         }
         console.log(err);
     } finally {
         return response;
+    }
+}
+
+export const loginApi = async (username, password) => {
+    let response = frameResponse();
+    try {
+        const apiResponse = await axios.post(url, { username, password });
+        if(apiResponse == 200) {
+
+        }
+    } catch (err) {
+
     }
 }
