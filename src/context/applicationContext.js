@@ -7,9 +7,9 @@ const AppContextProvider = ({ children }) => {
     const [cookies, setCookie, removeCookie] = useCookies(["appToken"]);
     const [userSessionData, setUserSessionData] = useState(undefined);
     const setSession = (token) => {
-        setCookie("appToken", token,{
+        setCookie("appToken", token, {
             path: "/",
-            maxAge: 900, //5 minutes
+            maxAge: 900, //15minutes
         });
     };
     const getSession = () => {
@@ -21,15 +21,19 @@ const AppContextProvider = ({ children }) => {
     const logout = () => {
         removeCookie("appToken", { path: "/" });
         setUserData(undefined);
-    }
-    return <AppContext.Provider value={{
-        setSession,
-        getSession,
-        setUserData,
-        getUserData,
-        logout
-    }}>{children}</AppContext.Provider>;
-}
+    };
+    return <AppContext.Provider
+        value={{
+            setSession,
+            getSession,
+            setUserData,
+            getUserData,
+            logout,
+        }}
+    >
+        {children}
+    </AppContext.Provider>;
+};
 
 export { AppContext };
 export default AppContextProvider;
