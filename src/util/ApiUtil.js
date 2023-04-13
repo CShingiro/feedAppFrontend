@@ -135,17 +135,17 @@ export const sessionApi = async (token) => {
     try {
         const url = `${API_BASE_URL}/user/get`;
         const apiResponse = await axios.get(url, {
-            headers: { Authorization: frameToken(token) }
+          headers: { Authorization: frameToken(token) },
         });
         if (apiResponse.status === 200) {
-            response = frameResponse(1, apiResponse.data);
+          response = frameResponse(1, apiResponse.data);
         }
     } catch (err) {
         if (err.response) {
-            response = frameResponse(0, err.response.data.message);
+          response = frameResponse(0, err.response.data.message);
         }
         console.log(err);
     } finally {
         return response;
     }
-}
+  };
