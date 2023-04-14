@@ -7,6 +7,7 @@ import { getOthersFeedsApi } from "../../util/ApiUtil";
 import MyProfile from "../../components/MyProfile";
 import AddFeed from "../../components/AddFeed";
 import InfiniteScroll from "react-infinite-scroll-component";
+import FeedCard from "../../components/FeedCard";
 
 const Dashboard = () => {
     const appContext = useContext(AppContext);
