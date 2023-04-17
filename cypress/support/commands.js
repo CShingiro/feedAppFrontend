@@ -23,3 +23,25 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+const APP_URL = Cypress.env("appUrl");
+const BACKEND_URL = Cypress.env("backendUrl");
+
+Cypress.Commands.add("login", (credentials) => {
+    cy.visit(`${APP_URL}/user/login`);
+
+    cy.get("#username").type(credentials.username);
+    cy.get("#password").type(credentials.password).type("{enter}");
+});
+
+Cypress.Commands.add("loginServerResponseCheck", (credentials) => {
+    cy.request({
+        method: "POST",
+        url: `${BACKEND_URL}/user/login`,
+        body: {
+            username: credentials.username,
+            password: credentials.password,
+        },
+    }).then((response) => {
+        expect(response.status).to.eq(200);
+    });
+});
